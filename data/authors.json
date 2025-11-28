@@ -1,0 +1,31 @@
+[
+  {
+    "id": "john-doe",
+    "name": "John Doe",
+    "bio": "Technology writer and AI enthusiast with over 10 years of experience in the tech industry.",
+    "avatar": "/images/authors/john-doe.jpg",
+    "social": {
+      "twitter": "https://twitter.com/johndoe",
+      "linkedin": "https://linkedin.com/in/johndoe"
+    }
+  },
+  {
+    "id": "jane-smith",
+    "name": "Jane Smith",
+    "bio": "Business strategist and startup advisor helping entrepreneurs build successful companies.",
+    "avatar": "/images/authors/jane-smith.jpg",
+    "social": {
+      "twitter": "https://twitter.com/janesmith",
+      "linkedin": "https://linkedin.com/in/janesmith"
+    }
+  },
+  {
+    "id": "mike-johnson",
+    "name": "Mike Johnson",
+    "bio": "Remote work expert and productivity coach with a passion for helping teams work better.",
+    "avatar": "/images/authors/mike-johnson.jpg",
+    "social": {
+      "twitter": "https://twitter.com/mikejohnson"
+    }
+  }
+]
