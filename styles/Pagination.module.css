@@ -1,0 +1,90 @@
+/* ============================================
+   FILE: styles/Pagination.module.css
+   ============================================ */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin: var(--spacing-3xl) 0;
+  padding: var(--spacing-lg) 0;
+}
+
+.button {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: var(--white);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-md);
+  color: var(--gray-700);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.button:hover:not(:disabled) {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.numbers {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.number {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-md);
+  color: var(--gray-700);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.number:hover {
+  background: var(--gray-100);
+}
+
+.number.active {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+}
+
+.ellipsis {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-500);
+}
+
+@media (max-width: 768px) {
+  .pagination {
+    gap: var(--spacing-sm);
+  }
+  
+  .button {
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: 0.875rem;
+  }
+  
+  .number {
+    width: 36px;
+    height: 36px;
+    font-size: 0.875rem;
+  }
+}
