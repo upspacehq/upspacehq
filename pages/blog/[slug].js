@@ -4,7 +4,9 @@ import Layout from '../../components/layout/Layout';
 import SEO from '../../components/seo/SEO';
 import { getAllPosts, getPostBySlug } from '../../data/posts';
 import styles from '../../styles/PostContent.module.css';
-import ReactMarkdown from 'react-markdown'; // ✅ Added Markdown renderer
+import ReactMarkdown from 'react-markdown';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism'; // ✅ Theme
 
 export default function Post({ post }) {
   const router = useRouter();
@@ -60,7 +62,6 @@ export default function Post({ post }) {
               </div>
             </div>
 
-            {/* ✅ Cover Image */}
             <img
               src={post.coverImage}
               alt={post.title}
@@ -68,9 +69,31 @@ export default function Post({ post }) {
             />
           </header>
 
-          {/* ✅ Render Markdown content instead of plain <p> */}
+          {/* ✅ Render Markdown with syntax highlighting */}
           <div className={styles.content}>
-            <ReactMarkdown>{post.content}</ReactMarkdown>
+            <ReactMarkdown
+              components={{
+                code({ node, inline, className, children, ...props }) {
+                  const match = /language-(\w+)/.exec(className || '');
+                  return !inline && match ? (
+                    <SyntaxHighlighter
+                      style={atomDark}
+                      language={match[1]}
+                      PreTag="div"
+                      {...props}
+                    >
+                      {String(children).replace(/\n$/, '')}
+                    </SyntaxHighlighter>
+                  ) : (
+                    <code className={className} {...props}>
+                      {children}
+                    </code>
+                  );
+                }
+              }}
+            >
+              {post.content}
+            </ReactMarkdown>
           </div>
 
           <div className={styles.tags}>
@@ -85,12 +108,12 @@ export default function Post({ post }) {
 }
 
 export async function getStaticPaths() {
-  const posts = await getAllPosts(); // ✅ fetch from CMS or fallback
+  const posts = await getAllPosts();
   const paths = posts.map(post => ({
     params: { slug: post.slug }
   }));
 
-  return { paths, fallback: true }; // ✅ dynamic CMS support
+  return { paths, fallback: true };
 }
 
 export async function getStaticProps({ params }) {
@@ -98,6 +121,6 @@ export async function getStaticProps({ params }) {
 
   return {
     props: { post: post || null },
-    revalidate: 60, // ✅ ISR: refresh every 60s
+    revalidate: 60,
   };
 }
