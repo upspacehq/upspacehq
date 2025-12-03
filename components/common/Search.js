@@ -1,6 +1,43 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { FiSearch, FiX } from 'react-icons/fi';
+// Inline SVG icons to avoid requiring `react-icons` as a dependency
+const SearchIcon = ({ className = '' }) => (
+  <svg
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <circle cx="11" cy="11" r="7" />
+    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+  </svg>
+);
+
+const CloseIcon = ({ className = '' }) => (
+  <svg
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <line x1="18" y1="6" x2="6" y2="18" />
+    <line x1="6" y1="6" x2="18" y2="18" />
+  </svg>
+);
 import styles from '../../styles/Search.module.css';
 
 const Search = ({ isOpen, onClose }) => {
@@ -50,12 +87,12 @@ const Search = ({ isOpen, onClose }) => {
   return (
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.close} onClick={onClose}>
-          <FiX />
+        <button className={styles.close} onClick={onClose} aria-label="Close search">
+          <CloseIcon />
         </button>
         
         <form onSubmit={(e) => e.preventDefault()} className={styles.form}>
-          <FiSearch className={styles.icon} />
+          <SearchIcon className={styles.icon} />
           <input
             type="text"
             placeholder="Search articles..."

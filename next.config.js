@@ -2,7 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['upspace.vercel.app', 'images.unsplash.com'],
+    // `images.domains` is deprecated. Use `remotePatterns` to explicitly
+    // allow remote images and protect from malformed requests.
+    remotePatterns: [
+      { protocol: 'https', hostname: 'upspace.vercel.app' },
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+    ],
   },
   env: {
     NEXT_PUBLIC_SITE_NAME: process.env.NEXT_PUBLIC_SITE_NAME,

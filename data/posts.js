@@ -31,6 +31,9 @@ export const localPosts = [
   // ... keep the rest of your posts unchanged
 ];
 
+// Convenience export for code that expects a static `posts` array
+export const posts = localPosts;
+
 /**
  * Fetch posts from CMS API (Vercel, Contentful, Sanity, etc.)
  * Uses NEXT_PUBLIC_API_BASE from .env.local
