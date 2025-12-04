@@ -8,8 +8,8 @@ const Footer = () => {
       <div className={`container ${styles.container}`}>
         <div className={styles.grid}>
           <div className={styles.about}>
-            <h3>UpSpace</h3>
-            <p>Your source for technology, business, and innovation insights.</p>
+            <h3>UpSpaceX</h3>
+            <p>Your daily space for everything that matters.</p>
             <div className={styles.social}>
               <a href="#" aria-label="Twitter"><FiTwitter /></a>
               <a href="#" aria-label="Facebook"><FiFacebook /></a>
@@ -45,7 +45,7 @@ const Footer = () => {
         </div>
 
         <div className={styles.bottom}>
-          <p>&copy; {new Date().getFullYear()} UpSpace. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} UpSpaceX. All rights reserved.</p>
         </div>
       </div>
     </footer>
