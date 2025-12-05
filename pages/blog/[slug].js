@@ -6,14 +6,15 @@ import { getAllPosts, getPostBySlug } from '../../data/posts';
 import styles from '../../styles/PostContent.module.css';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism'; // ✅ Theme
+import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 export default function Post({ post }) {
   const router = useRouter();
-
+  
+  // ✅ Handle fallback state
   if (router.isFallback) {
     return (
-      <Layout>
+      <Layout showSidebar={true}>
         <div className="container" style={{ padding: '4rem 0', textAlign: 'center' }}>
           <h1>Loading…</h1>
           <p>We’re preparing this article for you.</p>
@@ -21,10 +22,11 @@ export default function Post({ post }) {
       </Layout>
     );
   }
-
+  
+  // ✅ Handle missing post
   if (!post) {
     return (
-      <Layout>
+      <Layout showSidebar={true}>
         <div className="container" style={{ padding: '4rem 0', textAlign: 'center' }}>
           <h1>Post not found</h1>
           <p>The article you're looking for doesn't exist.</p>
@@ -32,10 +34,10 @@ export default function Post({ post }) {
       </Layout>
     );
   }
-
+  
   return (
-    <Layout>
-      <SEO 
+    <Layout showSidebar={true}>
+      <SEO
         title={`${post.title} | UpSpaceX`}
         description={post.excerpt}
         image={post.coverImage}
@@ -45,9 +47,15 @@ export default function Post({ post }) {
       <article className={styles.article}>
         <div className="container">
           <header className={styles.header}>
-            <span className={styles.category}>{post.category}</span>
+            {/* ✅ Category badge */}
+            <span className={`${styles.category} ${post.category.toLowerCase()}`}>
+              {post.category}
+            </span>
+
+            {/* ✅ Title */}
             <h1 className={styles.title}>{post.title}</h1>
 
+            {/* ✅ Meta info */}
             <div className={styles.meta}>
               <div className={styles.authorInfo}>
                 <div className={styles.authorAvatar}>
@@ -62,11 +70,14 @@ export default function Post({ post }) {
               </div>
             </div>
 
-            <img
-              src={post.coverImage}
-              alt={post.title}
-              className={styles.coverImage}
-            />
+            {/* ✅ Cover image */}
+            {post.coverImage && (
+              <img
+                src={post.coverImage}
+                alt={post.title}
+                className={styles.coverImage}
+              />
+            )}
           </header>
 
           {/* ✅ Render Markdown with syntax highlighting */}
@@ -96,11 +107,14 @@ export default function Post({ post }) {
             </ReactMarkdown>
           </div>
 
-          <div className={styles.tags}>
-            {post.tags.map(tag => (
-              <span key={tag} className={styles.tag}>{tag}</span>
-            ))}
-          </div>
+          {/* ✅ Tags */}
+          {post.tags?.length > 0 && (
+            <div className={styles.tags}>
+              {post.tags.map(tag => (
+                <span key={tag} className={styles.tag}>{tag}</span>
+              ))}
+            </div>
+          )}
         </div>
       </article>
     </Layout>
@@ -112,15 +126,15 @@ export async function getStaticPaths() {
   const paths = posts.map(post => ({
     params: { slug: post.slug }
   }));
-
+  
   return { paths, fallback: true };
 }
 
 export async function getStaticProps({ params }) {
   const post = await getPostBySlug(params.slug);
-
+  
   return {
     props: { post: post || null },
-    revalidate: 60,
+    revalidate: 60, // ✅ ISR: refresh content every 60 seconds
   };
 }

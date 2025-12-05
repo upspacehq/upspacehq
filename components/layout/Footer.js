@@ -1,5 +1,6 @@
+// components/layout/Footer.js
 import Link from 'next/link';
-import Image from 'next/image'; // ✅ Import Image for logo
+import Image from 'next/image';
 import { FiTwitter, FiFacebook, FiLinkedin, FiInstagram } from 'react-icons/fi';
 import styles from '../../styles/Footer.module.css';
 
@@ -8,14 +9,14 @@ const Footer = () => {
     <footer className={styles.footer}>
       <div className={`container ${styles.container}`}>
         <div className={styles.grid}>
+          {/* ✅ About / Logo */}
           <div className={styles.about}>
-            {/* ✅ Replace text logo with image logo */}
-            <Image 
-              src="/logo2.png" 
-              alt="UpSpaceX Logo" 
-              width={150} 
-              height={40} 
-              priority 
+            <Image
+              src="/logo2.png"
+              alt="UpSpaceX Logo"
+              width={150}
+              height={40}
+              priority
             />
             <p>Your daily space for everything that matters.</p>
             <div className={styles.social}>
@@ -26,6 +27,7 @@ const Footer = () => {
             </div>
           </div>
 
+          {/* ✅ Quick Links */}
           <div className={styles.links}>
             <h4>Quick Links</h4>
             <Link href="/about">About Us</Link>
@@ -34,14 +36,21 @@ const Footer = () => {
             <Link href="/privacy">Privacy Policy</Link>
           </div>
 
+          {/* ✅ Categories */}
           <div className={styles.links}>
             <h4>Categories</h4>
+            <Link href="/blog/category/newsinsights">News & Insights</Link>
+            <Link href="/blog/category/education">Education</Link>
+            <Link href="/blog/category/careersjobs">Careers & Jobs</Link>
             <Link href="/blog/category/technology">Technology</Link>
             <Link href="/blog/category/business">Business</Link>
-            <Link href="/blog/category/innovation">Innovation</Link>
-            <Link href="/blog/category/startups">Startups</Link>
+            <Link href="/blog/category/sports">Sports</Link>
+            <Link href="/blog/category/lifestyle">Lifestyle</Link>
+            <Link href="/blog/category/health">Health</Link>
+            <Link href="/blog/category/opinion">Opinion</Link>
           </div>
 
+          {/* ✅ Newsletter */}
           <div className={styles.newsletter}>
             <h4>Newsletter</h4>
             <p>Subscribe to get the latest updates</p>
@@ -52,6 +61,7 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* ✅ Bottom bar */}
         <div className={styles.bottom}>
           <p>&copy; {new Date().getFullYear()} UpSpaceX. All rights reserved.</p>
         </div>

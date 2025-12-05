@@ -16,12 +16,13 @@
   border-radius: var(--radius-lg);
   font-size: 1rem;
   font-family: inherit;
-  transition: border-color var(--transition-fast);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .search input:focus {
   outline: none;
   border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2); /* ✅ subtle focus ring */
 }
 
 .search button {
@@ -34,6 +35,11 @@
   color: var(--gray-600);
   cursor: pointer;
   font-size: 1.25rem;
+  transition: color var(--transition-fast);
+}
+
+.search button:hover {
+  color: var(--primary);
 }
 
 /* 🔹 Modal Overlay */
@@ -45,6 +51,12 @@
   align-items: center;
   justify-content: center;
   z-index: 2000;
+  animation: fadeIn var(--transition-base) ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .modal {
@@ -55,6 +67,12 @@
   padding: var(--spacing-2xl);
   position: relative;
   box-shadow: var(--shadow-xl);
+  animation: slideUp var(--transition-base) ease-in-out;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 .close {
@@ -66,11 +84,12 @@
   font-size: 1.5rem;
   color: var(--gray-600);
   cursor: pointer;
-  transition: color var(--transition-fast);
+  transition: color var(--transition-fast), transform var(--transition-fast);
 }
 
 .close:hover {
   color: var(--primary);
+  transform: rotate(90deg); /* ✅ playful hover animation */
 }
 
 /* 🔹 Form inside Modal */
@@ -92,12 +111,13 @@
   border: 2px solid var(--gray-200);
   border-radius: var(--radius-md);
   font-size: 1rem;
-  transition: border-color var(--transition-fast);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .input:focus {
   outline: none;
   border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
 }
 
 /* 🔹 Loading State */
@@ -105,6 +125,7 @@
   padding: var(--spacing-xl);
   text-align: center;
   color: var(--gray-600);
+  font-style: italic;
 }
 
 /* 🔹 Results */
@@ -118,11 +139,12 @@
   padding: var(--spacing-lg);
   border-bottom: 1px solid var(--gray-200);
   cursor: pointer;
-  transition: background var(--transition-fast);
+  transition: background var(--transition-fast), transform var(--transition-fast);
 }
 
 .result:hover {
   background: var(--gray-50);
+  transform: translateX(4px); /* ✅ subtle hover shift */
 }
 
 .result:last-child {
@@ -161,4 +183,5 @@
   padding: var(--spacing-2xl);
   text-align: center;
   color: var(--gray-600);
+  font-style: italic;
 }

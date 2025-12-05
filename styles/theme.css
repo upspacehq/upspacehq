@@ -1,0 +1,33 @@
+/* ============================================
+   FILE: styles/theme.css
+   ============================================ */
+
+/* 🔹 Default Light Theme */
+:root {
+  --background: var(--gray-50);
+  --text-color: var(--gray-900);
+  --card-bg: var(--white);
+  --border-color: var(--gray-200);
+
+  /* Extended semantic overrides */
+  --link-color: var(--primary);
+  --link-hover: var(--primary-dark);
+  --overlay-bg: rgba(0, 0, 0, 0.6);
+}
+
+/* 🔹 Dark Theme */
+[data-theme="dark"] {
+  --background: #0f172a; /* slate-900 */
+  --text-color: var(--gray-100);
+  --card-bg: #1e293b; /* slate-800 */
+  --border-color: var(--gray-700);
+
+  /* Override brand colors for better contrast */
+  --primary: #60a5fa;
+  --primary-dark: #2563eb;
+
+  /* Extended semantic overrides */
+  --link-color: #93c5fd; /* lighter blue for links */
+  --link-hover: #bfdbfe;
+  --overlay-bg: rgba(255, 255, 255, 0.1);
+}

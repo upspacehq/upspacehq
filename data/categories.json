@@ -1,22 +1,47 @@
 [
   {
-    "name": "Technology",
+    "name": "News & Insights",
+    "slug": "newsinsights",
+    "description": "Latest news, analysis, and insights on global events and trends"
+  },
+  {
+    "name": "Education & Scholarships",
+    "slug": "education",
+    "description": "Scholarship opportunities, academic resources, and education updates"
+  },
+  {
+    "name": "Careers & Jobs",
+    "slug": "careersjobs",
+    "description": "Career advice, job opportunities, and professional growth"
+  },
+  {
+    "name": "Technology & Innovation",
     "slug": "technology",
     "description": "Latest trends in technology, AI, and software development"
   },
   {
-    "name": "Business",
+    "name": "Business & Finance",
     "slug": "business",
-    "description": "Business strategies, entrepreneurship, and growth"
+    "description": "Business strategies, entrepreneurship, and financial growth"
   },
   {
-    "name": "Startups",
-    "slug": "startups",
-    "description": "Startup insights, funding, and success stories"
+    "name": "Sports & Fitness",
+    "slug": "sports",
+    "description": "Sports highlights, fitness tips, and athletic achievements"
   },
   {
-    "name": "Innovation",
-    "slug": "innovation",
-    "description": "Innovative ideas and emerging trends"
+    "name": "Lifestyle & Culture",
+    "slug": "lifestyle",
+    "description": "Fashion, travel, culture, and modern lifestyle trends"
+  },
+  {
+    "name": "Health & Wellness",
+    "slug": "health",
+    "description": "Guides on healthy living, wellness, and medical insights"
+  },
+  {
+    "name": "Opinion & Editorials",
+    "slug": "opinion",
+    "description": "Editorial perspectives, thought leadership, and opinion pieces"
   }
 ]

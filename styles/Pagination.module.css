@@ -61,6 +61,7 @@
   background: var(--primary);
   color: var(--white);
   border-color: var(--primary);
+  font-weight: 600;
 }
 
 .ellipsis {
@@ -70,11 +71,14 @@
   align-items: center;
   justify-content: center;
   color: var(--gray-500);
+  font-size: 1rem;
 }
 
+/* ✅ Responsive adjustments */
 @media (max-width: 768px) {
   .pagination {
     gap: var(--spacing-sm);
+    flex-wrap: wrap;
   }
   
   .button {
@@ -82,7 +86,8 @@
     font-size: 0.875rem;
   }
   
-  .number {
+  .number,
+  .ellipsis {
     width: 36px;
     height: 36px;
     font-size: 0.875rem;

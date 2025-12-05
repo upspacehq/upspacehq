@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-// Inline SVG icons to avoid requiring `react-icons` as a dependency
+import styles from '../../styles/Search.module.css';
+
+// ✅ Inline SVG icons (no external dependency)
 const SearchIcon = ({ className = '' }) => (
   <svg
     className={className}
     xmlns="http://www.w3.org/2000/svg"
-    width="16"
-    height="16"
+    width="18"
+    height="18"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -24,8 +26,8 @@ const CloseIcon = ({ className = '' }) => (
   <svg
     className={className}
     xmlns="http://www.w3.org/2000/svg"
-    width="16"
-    height="16"
+    width="18"
+    height="18"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -38,28 +40,29 @@ const CloseIcon = ({ className = '' }) => (
     <line x1="6" y1="6" x2="18" y2="18" />
   </svg>
 );
-import styles from '../../styles/Search.module.css';
 
 const Search = ({ isOpen, onClose }) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-
+  
+  // ✅ Reset state when overlay closes
   useEffect(() => {
     if (!isOpen) {
       setQuery('');
       setResults([]);
     }
   }, [isOpen]);
-
+  
+  // ✅ Debounced search
   useEffect(() => {
     const searchPosts = async () => {
-      if (query.length < 2) {
+      if (query.trim().length < 2) {
         setResults([]);
         return;
       }
-
+      
       setLoading(true);
       try {
         const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
@@ -72,25 +75,31 @@ const Search = ({ isOpen, onClose }) => {
         setLoading(false);
       }
     };
-
+    
     const debounce = setTimeout(searchPosts, 300);
     return () => clearTimeout(debounce);
   }, [query]);
-
+  
   const handleResultClick = (slug) => {
     router.push(`/blog/${slug}`);
     onClose();
   };
-
+  
   if (!isOpen) return null;
-
+  
   return (
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.close} onClick={onClose} aria-label="Close search">
+        {/* ✅ Close button */}
+        <button
+          className={styles.close}
+          onClick={onClose}
+          aria-label="Close search"
+        >
           <CloseIcon />
         </button>
-        
+
+        {/* ✅ Search form */}
         <form onSubmit={(e) => e.preventDefault()} className={styles.form}>
           <SearchIcon className={styles.icon} />
           <input
@@ -100,20 +109,24 @@ const Search = ({ isOpen, onClose }) => {
             onChange={(e) => setQuery(e.target.value)}
             className={styles.input}
             autoFocus
+            aria-label="Search articles"
           />
         </form>
 
-        {loading && (
-          <div className={styles.loading}>Searching...</div>
-        )}
+        {/* ✅ Loading state */}
+        {loading && <div className={styles.loading}>Searching...</div>}
 
+        {/* ✅ Results */}
         {!loading && results.length > 0 && (
           <div className={styles.results}>
-            {results.map(post => (
-              <div 
-                key={post.id} 
+            {results.map((post) => (
+              <div
+                key={post.id}
                 className={styles.result}
                 onClick={() => handleResultClick(post.slug)}
+                role="button"
+                tabIndex={0}
+                onKeyPress={(e) => e.key === 'Enter' && handleResultClick(post.slug)}
               >
                 <h3>{post.title}</h3>
                 <p>{post.excerpt}</p>
@@ -123,7 +136,8 @@ const Search = ({ isOpen, onClose }) => {
           </div>
         )}
 
-        {!loading && query.length >= 2 && results.length === 0 && (
+        {/* ✅ No results */}
+        {!loading && query.trim().length >= 2 && results.length === 0 && (
           <div className={styles.noResults}>
             <p>No results found for "{query}"</p>
           </div>

@@ -1,3 +1,7 @@
+/* ============================================
+   FILE: styles/PostContent.module.css
+   ============================================ */
+
 .article {
   max-width: 800px;
   margin: 0 auto;
@@ -141,6 +145,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-sm);
+  margin-top: var(--spacing-xl);
 }
 
 .tag {
@@ -149,9 +154,15 @@
   padding: 0.25rem var(--spacing-sm);
   border-radius: var(--radius-sm);
   font-size: 0.875rem;
+  transition: background var(--transition-fast), color var(--transition-fast);
 }
 
-/* 🔄 Share Buttons Styling */
+.tag:hover {
+  background: var(--primary);
+  color: var(--white);
+}
+
+/* ✅ Share Buttons Styling */
 .footer {
   margin-top: var(--spacing-3xl);
   padding-top: var(--spacing-2xl);

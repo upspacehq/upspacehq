@@ -6,33 +6,49 @@ import styles from '../../styles/PostCard.module.css';
 const PostCard = ({ post }) => {
   return (
     <article className={styles.card}>
-      <Link href={`/blog/${post.slug}`}>
-        <div className={styles.imageWrapper}>
-          <Image
-            src={post.coverImage || '/images/placeholder.jpg'}
-            alt={post.title}
-            width={600}
-            height={400}
-            className={styles.image}
-          />
-          <span className={styles.category}>{post.category}</span>
-        </div>
+      {/* ✅ Cover image + category badge */}
+      <Link href={`/blog/${post.slug}`} className={styles.imageWrapper}>
+        <Image
+          src={post.coverImage || '/images/placeholder.jpg'}
+          alt={post.title}
+          width={600}
+          height={400}
+          className={styles.image}
+          priority={false}
+        />
+        {post.category && (
+          <span className={`${styles.badge} ${post.category.toLowerCase()}`}>
+            {post.category}
+          </span>
+        )}
       </Link>
 
+      {/* ✅ Content */}
       <div className={styles.content}>
+        {/* Meta info */}
         <div className={styles.meta}>
-          <span className={styles.author}>{post.author}</span>
-          <span className={styles.date}>
-            {format(new Date(post.date), 'MMM dd, yyyy')}
-          </span>
+          {post.author && (
+            <span className={styles.author}>By {post.author}</span>
+          )}
+          {post.date && (
+            <span className={styles.date}>
+              {format(new Date(post.date), 'MMM dd, yyyy')}
+            </span>
+          )}
+          {post.readTime && (
+            <span className={styles.readTime}>{post.readTime} min read</span>
+          )}
         </div>
 
-        <Link href={`/blog/${post.slug}`}>
-          <h2 className={styles.title}>{post.title}</h2>
+        {/* Title */}
+        <Link href={`/blog/${post.slug}`} className={styles.title}>
+          {post.title}
         </Link>
 
-        <p className={styles.excerpt}>{post.excerpt}</p>
+        {/* Excerpt */}
+        {post.excerpt && <p className={styles.excerpt}>{post.excerpt}</p>}
 
+        {/* Read more link */}
         <Link href={`/blog/${post.slug}`} className={styles.readMore}>
           Read More →
         </Link>

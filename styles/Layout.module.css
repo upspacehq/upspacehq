@@ -1,0 +1,99 @@
+/* ============================================
+   FILE: styles/Layout.module.css
+   ============================================ */
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--text-color);
+  transition: background var(--transition-slow), color var(--transition-slow);
+  animation: fadeIn var(--animation-speed) ease-in-out;
+}
+
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--spacing-lg);
+  flex: 1;
+}
+
+.contentWrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-2xl);
+}
+
+.content {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-xl);
+  transition: background var(--transition-slow), color var(--transition-slow);
+}
+
+.sidebar {
+  background: transparent;
+}
+
+/* ✅ Theme Toggle */
+.themeToggle {
+  text-align: right;
+  padding: var(--spacing-md) var(--spacing-lg);
+}
+
+.themeToggle button {
+  background: var(--card-bg);
+  color: var(--text-color);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-full);
+  padding: var(--spacing-sm) var(--spacing-md);
+  cursor: pointer;
+  font-size: 1.25rem; /* bigger for emoji icons */
+  transition: background var(--transition-fast), transform var(--transition-fast),
+              color var(--transition-slow), border-color var(--transition-slow);
+}
+
+.themeToggle button:hover {
+  background: var(--primary-light);
+  transform: scale(1.1);
+}
+
+/* ✅ Two-column layout when sidebar is enabled */
+.contentWithSidebar {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: var(--spacing-2xl);
+  align-items: start;
+}
+
+/* ✅ Sidebar wrapper */
+.sidebarWrapper {
+  position: relative;
+}
+
+/* ✅ Add subtle separation between content and sidebar */
+.contentWithSidebar .sidebarWrapper {
+  padding-left: var(--spacing-lg);
+  border-left: 1px solid var(--border-color);
+}
+
+/* ✅ Responsive adjustments */
+@media (max-width: 992px) {
+  .contentWithSidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .contentWithSidebar .sidebarWrapper {
+    padding-left: 0;
+    border-left: none;
+    margin-top: var(--spacing-2xl);
+  }
+}
+
+/* ✅ Fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

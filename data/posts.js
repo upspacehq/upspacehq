@@ -6,9 +6,9 @@ export const localPosts = [
     title: "The Future of Artificial Intelligence in 2025",
     excerpt: "Exploring how AI is transforming industries and what to expect in the coming years...",
     content: "Artificial Intelligence has come a long way in recent years...",
-    category: "Technology",
-    author: "John Doe",
-    authorImage: "/images/authors/john-doe.jpg",
+    category: "technology",
+    author: "Maruf Quadri", // ✅ You as author
+    authorImage: "/images/authors/maruf-quadri.jpg",
     coverImage: "/images/posts/ai-future.jpg",
     date: "2025-01-15",
     readTime: 5,
@@ -20,7 +20,7 @@ export const localPosts = [
     title: "Complete Guide to Startup Funding in 2025",
     excerpt: "Everything you need to know about raising capital for your startup...",
     content: "Raising funding for a startup in 2025 requires a strategic approach...",
-    category: "Business",
+    category: "business",
     author: "Jane Smith",
     authorImage: "/images/authors/jane-smith.jpg",
     coverImage: "/images/posts/startup-funding.jpg",
@@ -28,67 +28,91 @@ export const localPosts = [
     readTime: 8,
     tags: ["Startups", "Funding", "Business"]
   },
-  // ... keep the rest of your posts unchanged
+  {
+    id: 3,
+    slug: "scholarship-opportunities-2025",
+    title: "Top Scholarship Opportunities in 2025",
+    excerpt: "A curated list of scholarships available for students worldwide...",
+    content: "Education funding remains critical in 2025. Here are the top scholarships...",
+    category: "education",
+    author: "Maruf Quadri", // ✅ You as author
+    authorImage: "/images/authors/maruf-quadri.jpg",
+    coverImage: "/images/posts/scholarships.jpg",
+    date: "2025-02-01",
+    readTime: 6,
+    tags: ["Education", "Scholarships", "Opportunities"]
+  },
+  {
+    id: 4,
+    slug: "career-trends-2025",
+    title: "Career Trends and Job Opportunities in 2025",
+    excerpt: "Exploring the most in-demand jobs and career paths this year...",
+    content: "The job market in 2025 is shifting towards digital skills...",
+    category: "careersjobs",
+    author: "David Lee",
+    authorImage: "/images/authors/david-lee.jpg",
+    coverImage: "/images/posts/jobs.jpg",
+    date: "2025-02-10",
+    readTime: 7,
+    tags: ["Jobs", "Careers", "Opportunities"]
+  },
+  {
+    id: 5,
+    slug: "sports-highlights-2025",
+    title: "Sports Highlights You Can't Miss in 2025",
+    excerpt: "From football to basketball, here are the top sports stories...",
+    content: "Sports continue to inspire millions in 2025...",
+    category: "sports",
+    author: "Maruf Quadri", // ✅ You as author
+    authorImage: "/images/authors/maruf-quadri.jpg",
+    coverImage: "/images/posts/sports.jpg",
+    date: "2025-03-01",
+    readTime: 4,
+    tags: ["Sports", "Highlights", "Events"]
+  },
+  {
+    id: 6,
+    slug: "healthy-living-guide-2025",
+    title: "Healthy Living Guide for 2025",
+    excerpt: "Tips and tricks for maintaining wellness in the modern age...",
+    content: "Health and wellness are more important than ever...",
+    category: "health",
+    author: "Sophia Brown",
+    authorImage: "/images/authors/sophia-brown.jpg",
+    coverImage: "/images/posts/health.jpg",
+    date: "2025-03-15",
+    readTime: 5,
+    tags: ["Health", "Wellness", "Lifestyle"]
+  },
+  {
+    id: 7,
+    slug: "modern-lifestyle-trends-2025",
+    title: "Modern Lifestyle Trends in 2025",
+    excerpt: "Exploring fashion, travel, and cultural shifts...",
+    content: "Lifestyle and culture continue to evolve rapidly...",
+    category: "lifestyle",
+    author: "Emma Wilson",
+    authorImage: "/images/authors/emma-wilson.jpg",
+    coverImage: "/images/posts/lifestyle.jpg",
+    date: "2025-04-01",
+    readTime: 6,
+    tags: ["Lifestyle", "Culture", "Trends"]
+  },
+  {
+    id: 8,
+    slug: "editorial-perspectives-2025",
+    title: "Editorial Perspectives on Global Issues",
+    excerpt: "Opinion pieces from thought leaders around the world...",
+    content: "Editorials provide unique insights into global challenges...",
+    category: "opinion",
+    author: "Maruf Quadri", // ✅ You as author
+    authorImage: "/images/authors/maruf-quadri.jpg",
+    coverImage: "/images/posts/opinion.jpg",
+    date: "2025-04-10",
+    readTime: 7,
+    tags: ["Opinion", "Editorials", "Global"]
+  }
 ];
 
 // Convenience export for code that expects a static `posts` array
 export const posts = localPosts;
-
-/**
- * Fetch posts from CMS API (Vercel, Contentful, Sanity, etc.)
- * Uses NEXT_PUBLIC_API_BASE from .env.local
- */
-export async function fetchPostsFromCMS() {
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/posts`);
-    if (!res.ok) throw new Error("Failed to fetch posts from CMS");
-    const data = await res.json();
-    return data.posts || [];
-  } catch (error) {
-    console.error("CMS fetch error:", error);
-    // Fallback to local mock data
-    return localPosts;
-  }
-}
-
-/**
- * Get all posts (CMS first, fallback to local)
- */
-export async function getAllPosts() {
-  const posts = await fetchPostsFromCMS();
-  return posts.length ? posts : localPosts;
-}
-
-/**
- * Get a single post by slug
- */
-export async function getPostBySlug(slug) {
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/posts/${slug}`);
-    if (!res.ok) throw new Error("Failed to fetch post from CMS");
-    const data = await res.json();
-    return data.post || null;
-  } catch (error) {
-    console.error("CMS fetch error:", error);
-    const posts = await getAllPosts();
-    return posts.find((post) => post.slug === slug);
-  }
-}
-
-/**
- * Get featured posts (e.g., latest 3)
- */
-export async function getFeaturedPosts(limit = 3) {
-  const posts = await getAllPosts();
-  return posts.slice(0, limit);
-}
-
-/**
- * Get posts by category
- */
-export async function getPostsByCategory(category) {
-  const posts = await getAllPosts();
-  return posts.filter(
-    (post) => post.category.toLowerCase() === category.toLowerCase()
-  );
-}

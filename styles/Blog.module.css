@@ -1,3 +1,7 @@
+/* ============================================
+   FILE: styles/Blog.module.css
+   ============================================ */
+
 .blog {
   padding: var(--spacing-3xl) 0;
 }
@@ -10,10 +14,18 @@
 .header h1 {
   font-size: 2.5rem;
   margin-bottom: var(--spacing-md);
+  color: var(--gray-900);
 }
 
 .header p {
   color: var(--gray-600);
+  line-height: 1.6;
+}
+
+.searchInfo {
+  margin-top: var(--spacing-md);
+  font-size: 0.95rem;
+  color: var(--gray-500);
 }
 
 .grid {
@@ -22,7 +34,7 @@
   gap: var(--spacing-2xl);
 }
 
-/* 🔄 Added Author Header Styling */
+/* ✅ Author Header Styling */
 .authorHeader {
   display: flex;
   align-items: center;
@@ -50,6 +62,7 @@
 
 .authorHeader h1 {
   margin-bottom: var(--spacing-sm);
+  color: var(--gray-900);
 }
 
 .authorHeader p {
@@ -60,6 +73,16 @@
 .postCount {
   color: var(--primary);
   font-weight: 600;
+}
+
+/* ✅ No Results Styling */
+.noResults {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  background: var(--gray-50);
+  border-radius: var(--radius-md);
+  color: var(--gray-600);
+  font-size: 1rem;
 }
 
 @media (max-width: 768px) {

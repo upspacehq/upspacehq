@@ -1,40 +1,43 @@
 import Link from 'next/link';
 import { getCategories } from '../../lib/categories';
+import { posts } from '../../data/posts';
 import styles from '../../styles/Sidebar.module.css';
 
 const Sidebar = () => {
   const categories = getCategories();
-  
-  const recentPosts = [
-    { title: "The Future of AI in 2025", slug: "future-of-artificial-intelligence" },
-    { title: "Startup Funding Guide", slug: "startup-funding-guide-2025" },
-    { title: "Remote Work Best Practices", slug: "remote-work-best-practices" }
-  ];
+
+  // ✅ Dynamically get the latest 5 posts
+  const recentPosts = posts.slice(0, 5);
 
   return (
     <aside className={styles.sidebar}>
-      {/* Categories Widget */}
+      {/* ✅ Categories Widget */}
       <div className={styles.widget}>
         <h3 className={styles.widgetTitle}>Categories</h3>
         <ul className={styles.categoryList}>
           {categories.map(category => (
             <li key={category.slug}>
-              <Link href={`/blog/category/${category.slug}`}>
+              <Link
+                href={`/blog/category/${category.slug}`}
+                className={styles.link}
+              >
                 {category.name}
-                <span className={styles.count}>({category.count})</span>
+                {category.count !== undefined && (
+                  <span className={styles.count}>({category.count})</span>
+                )}
               </Link>
             </li>
           ))}
         </ul>
       </div>
 
-      {/* Recent Posts Widget */}
+      {/* ✅ Recent Posts Widget */}
       <div className={styles.widget}>
         <h3 className={styles.widgetTitle}>Recent Posts</h3>
         <ul className={styles.postList}>
           {recentPosts.map(post => (
             <li key={post.slug}>
-              <Link href={`/blog/${post.slug}`}>
+              <Link href={`/blog/${post.slug}`} className={styles.link}>
                 {post.title}
               </Link>
             </li>
@@ -42,12 +45,17 @@ const Sidebar = () => {
         </ul>
       </div>
 
-      {/* Newsletter Widget */}
+      {/* ✅ Newsletter Widget */}
       <div className={`${styles.widget} ${styles.newsletterWidget}`}>
         <h3 className={styles.widgetTitle}>Newsletter</h3>
         <p>Get weekly updates delivered to your inbox.</p>
         <form className={styles.form}>
-          <input type="email" placeholder="Your email" required />
+          <input
+            type="email"
+            placeholder="Your email"
+            aria-label="Email address"
+            required
+          />
           <button type="submit">Subscribe</button>
         </form>
       </div>

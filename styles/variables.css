@@ -3,13 +3,18 @@
    ============================================ */
 
 :root {
-  /* UpSpaceX Brand Colors */
+  /* 🔹 UpSpaceX Brand Colors */
   --primary: #2563eb;
   --primary-dark: #1e40af;
   --secondary: #10b981;
   --accent: #f59e0b;
-  
-  /* Neutrals */
+
+  /* 🔹 Extended Palette */
+  --primary-light: #60a5fa;
+  --secondary-light: #6ee7b7;
+  --accent-light: #fcd34d;
+
+  /* 🔹 Neutrals */
   --dark: #1f2937;
   --gray-900: #111827;
   --gray-800: #1f2937;
@@ -22,19 +27,29 @@
   --gray-100: #f3f4f6;
   --gray-50: #f9fafb;
   --white: #ffffff;
-  
-  /* Semantic Colors */
+
+  /* 🔹 Semantic Colors */
   --success: #10b981;
   --warning: #f59e0b;
   --error: #ef4444;
   --info: #3b82f6;
-  
-  /* Typography */
+
+  /* 🔹 Typography */
   --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
   --font-serif: 'Georgia', 'Times New Roman', serif;
   --font-mono: 'Monaco', 'Courier New', monospace;
-  
-  /* Spacing */
+
+  /* 🔹 Font Sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+
+  /* 🔹 Spacing */
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
@@ -42,24 +57,40 @@
   --spacing-xl: 2rem;
   --spacing-2xl: 3rem;
   --spacing-3xl: 4rem;
-  
-  /* Border Radius */
+
+  /* 🔹 Border Radius */
   --radius-sm: 0.25rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
-  
-  /* Shadows */
+  --radius-full: 9999px; /* ✅ for pills, avatars, buttons */
+
+  /* 🔹 Shadows */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-  
-  /* Transitions */
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+
+  /* 🔹 Transitions */
   --transition-fast: 150ms ease-in-out;
   --transition-base: 250ms ease-in-out;
   --transition-slow: 350ms ease-in-out;
-  
-  /* Container */
+
+  /* 🔹 Animation */
+  --animation-speed: 0.5s;
+
+  /* 🔹 Container */
   --container-max: 1280px;
+
+  /* 🔹 Z-index scale */
+  --z-header: 1000;
+  --z-overlay: 2000;
+  --z-modal: 3000;
+  --z-toast: 4000;
+
+  /* 🔹 Theme-related tokens */
+  --link-color: var(--primary);
+  --link-hover: var(--primary-dark);
+  --overlay-bg: rgba(0, 0, 0, 0.6);
 }

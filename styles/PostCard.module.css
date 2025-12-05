@@ -7,7 +7,7 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
-  transition: all var(--transition-base);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -37,7 +37,8 @@
   transform: scale(1.05);
 }
 
-.category {
+/* ✅ Base badge styling */
+.badge {
   position: absolute;
   top: var(--spacing-md);
   left: var(--spacing-md);
@@ -49,7 +50,19 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  box-shadow: var(--shadow-sm);
 }
+
+/* ✅ Category-specific color themes */
+.technology { background: #2563eb; }
+.business { background: #16a34a; }
+.newsinsights { background: #1d4ed8; }
+.education { background: #9333ea; }
+.careersjobs { background: #0ea5e9; }
+.sports { background: #dc2626; }
+.lifestyle { background: #f59e0b; }
+.health { background: #22c55e; }
+.opinion { background: #6b7280; }
 
 .content {
   padding: var(--spacing-lg);
@@ -61,6 +74,7 @@
 .meta {
   display: flex;
   align-items: center;
+  flex-wrap: wrap; /* ✅ ensures meta info wraps on small screens */
   gap: var(--spacing-md);
   margin-bottom: var(--spacing-md);
   font-size: 0.875rem;
@@ -78,6 +92,19 @@
 }
 
 .date::before {
+  content: '•';
+  color: var(--gray-400);
+}
+
+/* ✅ Read time styling */
+.readTime {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  color: var(--gray-500);
+}
+
+.readTime::before {
   content: '•';
   color: var(--gray-400);
 }
@@ -108,9 +135,25 @@
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-xs);
-  transition: gap var(--transition-fast);
+  transition: gap var(--transition-fast), color var(--transition-fast);
 }
 
 .card:hover .readMore {
   gap: var(--spacing-sm);
+  color: var(--primary-dark); /* ✅ subtle hover color change */
+}
+
+/* ✅ Responsive adjustments */
+@media (max-width: 768px) {
+  .imageWrapper {
+    height: 200px;
+  }
+
+  .title {
+    font-size: 1.125rem;
+  }
+
+  .excerpt {
+    font-size: 0.95rem;
+  }
 }

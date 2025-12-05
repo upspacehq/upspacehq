@@ -1,14 +1,25 @@
+/* ============================================
+   FILE: styles/Sidebar.module.css
+   ============================================ */
+
 .sidebar {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xl);
 }
 
+/* ✅ Widget container */
 .widget {
   background: var(--white);
   padding: var(--spacing-xl);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.widget:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .widgetTitle {
@@ -17,8 +28,10 @@
   color: var(--gray-900);
   border-bottom: 2px solid var(--primary);
   padding-bottom: var(--spacing-sm);
+  font-weight: 600;
 }
 
+/* ✅ Lists */
 .categoryList,
 .postList {
   list-style: none;
@@ -38,12 +51,13 @@
   align-items: center;
   justify-content: space-between;
   padding: var(--spacing-sm) 0;
-  transition: color var(--transition-fast);
+  transition: color var(--transition-fast), transform var(--transition-fast);
 }
 
 .categoryList a:hover,
 .postList a:hover {
   color: var(--primary);
+  transform: translateX(4px);
 }
 
 .count {
@@ -54,6 +68,7 @@
   color: var(--gray-600);
 }
 
+/* ✅ Newsletter widget */
 .newsletterWidget {
   background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   color: var(--white);
@@ -81,6 +96,7 @@
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.1);
   color: var(--white);
+  transition: background var(--transition-fast), border-color var(--transition-fast);
 }
 
 .form input::placeholder {
@@ -109,8 +125,17 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* ✅ Responsive adjustments */
 @media (max-width: 768px) {
   .sidebar {
     margin-top: var(--spacing-2xl);
+  }
+  
+  .widget {
+    padding: var(--spacing-lg);
+  }
+  
+  .widgetTitle {
+    font-size: 1.125rem;
   }
 }
