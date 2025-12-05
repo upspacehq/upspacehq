@@ -4,28 +4,40 @@
 
 /* ✅ Shared Section Utility */
 .section {
-  padding: var(--spacing-2xl) 0;
+  padding: var(--spacing-4xl) 0; /* more vertical space for immersive feel */
+  width: 100%;
 }
 .section .container {
-  max-width: 1200px;
+  max-width: 100%; /* allow full width */
   margin: 0 auto;
-  padding: 0 var(--spacing-lg);
+  padding: 0 var(--spacing-xl); /* keep breathing room on sides */
 }
 
 /* ✅ Hero Section */
 .hero {
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-  color: var(--white);
+  position: relative;
+  width: 100%;
+  min-height: 80vh; /* taller for immersive feel */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+
+  /* Background image with gradient overlay */
+  background: 
+    linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.4)), 
+    url('/images/hero-bg.jpg') center/cover no-repeat;
+
+  color: var(--white);
   margin-bottom: var(--spacing-3xl);
-  padding: var(--spacing-3xl) 0; /* hero uses larger padding */
-}
-.hero .container {
-  max-width: 800px; /* tighter width for hero text */
+  padding: var(--spacing-5xl) var(--spacing-xl);
 }
 .heroTitle {
-  font-size: 3rem;
-  margin-bottom: var(--spacing-md);
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: var(--spacing-lg);
+  line-height: 1.2;
 }
 .brand {
   background: linear-gradient(135deg, var(--white), var(--secondary));
@@ -34,10 +46,11 @@
   background-clip: text;
 }
 .heroSubtitle {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   color: rgba(255, 255, 255, 0.9);
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 900px;
+  margin: 0 auto var(--spacing-xl);
+  line-height: 1.6;
 }
 
 /* ✅ CTA Button */
@@ -47,21 +60,26 @@
 .ctaButton {
   background: var(--secondary);
   color: var(--white);
-  padding: var(--spacing-sm) var(--spacing-lg);
-  border-radius: 6px;
-  font-weight: 600;
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1.125rem;
   text-decoration: none;
   transition: all 0.3s ease;
 }
 .ctaButton:hover {
   background: var(--secondary-dark);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 /* ✅ Featured Posts */
-.featured h2 {
+.featured {
+  background: var(--gray-50);
   text-align: center;
-  font-size: 2rem;
+}
+.featured h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
   margin-bottom: var(--spacing-2xl);
 }
 .grid {
@@ -73,6 +91,13 @@
 /* ✅ Categories Section */
 .categories {
   background: var(--gray-100);
+  text-align: center;
+  padding: var(--spacing-4xl) 0;
+}
+.categories h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-xl);
 }
 .categoryGrid {
   display: grid;
@@ -84,7 +109,7 @@
   background: var(--white);
   border: 1px solid var(--gray-300);
   border-radius: 8px;
-  padding: var(--spacing-md);
+  padding: var(--spacing-lg);
   text-align: center;
   font-weight: 600;
   color: var(--primary-dark);
@@ -101,17 +126,17 @@
 .newsletter {
   text-align: center;
   background: var(--gray-50);
-}
-.newsletter .container {
-  max-width: 600px; /* narrower for form */
+  padding: var(--spacing-4xl) 0;
 }
 .newsletter h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
+  font-weight: 700;
   margin-bottom: var(--spacing-md);
 }
 .newsletter p {
   margin-bottom: var(--spacing-lg);
   color: var(--gray-700);
+  font-size: 1.25rem;
 }
 .form {
   display: flex;
@@ -119,17 +144,19 @@
   gap: var(--spacing-sm);
 }
 .form input {
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-lg);
   border: 1px solid var(--gray-300);
   border-radius: 6px;
-  width: 250px;
+  width: 300px;
+  font-size: 1rem;
 }
 .form button {
   background: var(--primary);
   color: var(--white);
-  padding: var(--spacing-sm) var(--spacing-lg);
+  padding: var(--spacing-md) var(--spacing-xl);
   border-radius: 6px;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 1.125rem;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -140,9 +167,14 @@
 /* ✅ Responsive */
 @media (max-width: 768px) {
   .heroTitle {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
   .heroSubtitle {
+    font-size: 1.125rem;
+    max-width: 100%;
+  }
+  .ctaButton {
+    width: 100%;
     font-size: 1rem;
   }
   .grid {
